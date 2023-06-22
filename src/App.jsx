@@ -1,7 +1,13 @@
+import DropDown from "./components/DropDown";
+import Search from "./components/Search";
+
 function App() {
   return (
     <main>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+      
+      <DropDown  value1={"Chart types"} value2={"Line"} 
+      value3={"Bar chart vertical"} value4={"Bar chart horizontal"}/>
+      <Search/>
     </main>
   );
 }

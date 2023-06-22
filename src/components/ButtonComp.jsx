@@ -1,10 +1,13 @@
-import React from "react";
-
-const ButtonComp = (props) => {
+/* eslint-disable react/prop-types */
+const ButtonComp = ({ text, btnclass }) => {
   return (
-    
-      <button className="border bg-blue-500 px-6 py-2 text-white rounded-md">{props.name}</button>
-    
+    <button
+      className={`${
+        !btnclass ? "text-white bg-blue-700" : btnclass
+      }  border  px-6 py-2  rounded-md font-medium`}
+    >
+      {text}
+    </button>
   );
 };
 

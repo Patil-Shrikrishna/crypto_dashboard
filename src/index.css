@@ -2,3 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
+.myclass::-webkit-scrollbar {
+  display: none;
+}

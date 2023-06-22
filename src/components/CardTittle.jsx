@@ -1,11 +1,9 @@
-import React from 'react'
-
-const CardTittle = (props) => {
+const CardTittle = ({ title }) => {
   return (
     <div>
-      <h1 className="text-3xl">{props.Heading}</h1>
+      <h2 className="text-xl font-bold capitalize mb-8">{title}</h2>
     </div>
-  )
-}
+  );
+};
 
-export default CardTittle
+export default CardTittle;

@@ -1,21 +1,17 @@
-import React from 'react';
+/* eslint-disable react/prop-types */
 
-const DropDown = (props) => {
+const DropDown = ({ value }) => {
   return (
-    <div>
-     
-     <select className="bg-gray-100 rounded-md pl-3 py-1 w-28 text-sm border shadow-xs font-medium " name="charttype" id="charttype">
-       
-      <option className="my-2" selected disabled hidden value={props.value1}>{props.value1}</option>
-      <option className="h-10" value={props.value2}>{props.value2}</option>
-      <option className="py-2" value={props.value3}>{props.value3}</option>
-      <option className="py-2" value={props.value4}>{props.value4}</option>
-      
-     </select>
-    
-
-    </div>
-  )
-}
+    <select
+      className=" rounded-md px-3 py-2 max-w-max min-w-max  text-sm border shadow-xs font-medium "
+      name="charttype"
+      id="charttype"
+    >
+      <option selected disabled hidden value={value}>
+        {value}
+      </option>
+    </select>
+  );
+};
 
 export default DropDown;

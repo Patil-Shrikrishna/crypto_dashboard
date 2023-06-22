@@ -1,11 +1,14 @@
-import React from 'react';
+/* eslint-disable react/prop-types */
 
-const Search = () => {
+const Search = ({ inputClass }) => {
   return (
-    <div>
-      <input className="w-full max-w-3xl py-1.5 px-4 bg-gray-100 rounded-md border " type="text" name="search"  placeholder="Search by coin"/>
-    </div>
-  )
-}
+    <input
+      className={`w-full  py-1.5 px-4 focus:outline-none  ${inputClass}`}
+      type="text"
+      name="search"
+      placeholder="Search by coin"
+    />
+  );
+};
 
 export default Search;

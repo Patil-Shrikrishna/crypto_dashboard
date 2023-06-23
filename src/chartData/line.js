@@ -1,5 +1,5 @@
 export const lineData = {
-    // labels: labels,
+    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
     datasets: [
         {
             label: "My First Dataset",
@@ -9,8 +9,4 @@ export const lineData = {
             tension: 0.1,
         },
     ],
-};
-export const lineConfig = {
-    type: "line",
-    data: lineData,
 };

@@ -1,5 +1,5 @@
 export const barData = {
-    labels: labels,
+    // labels: labels,
     datasets: [{
         label: 'My First Dataset',
         data: [65, 59, 80, 81, 56, 55, 40],
@@ -24,14 +24,4 @@ export const barData = {
         borderWidth: 1
     }]
 };
-export const barConfig = {
-    type: 'bar',
-    data: data,
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    },
-};
+

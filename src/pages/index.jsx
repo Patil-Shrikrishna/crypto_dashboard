@@ -7,73 +7,48 @@ import { BsSearch } from "react-icons/bs";
 import ButtonComp from "../components/ButtonComp";
 import { PiCalendarLight } from "react-icons/pi";
 import { Pie, Line } from "react-chartjs-2";
+import { Chart, registerables } from 'chart.js';
 import {
   Chart as ChartJS,
   ArcElement,
   Tooltip,
   Legend,
-  ChartUtils,
+
 } from "chart.js";
-const Utils = ChartUtils.init();
+import { CategoryScale } from 'chart.js';
+import { PieChart } from "../components/charts/PieChart";
+import { LineChart } from "../components/charts/LineChart";
+// import { barData, barConfig } from "../chartData/bar";
+import { lineData, lineConfig } from "../chartData/line";
+
+import { pieData, pieConfig } from "../chartData/pie";
+
+// import pieData from "../chartData/pie";
+// import pieConfig from "../chartData/pie";
+
+Chart.register(...registerables);
 ChartJS.register(ArcElement, Tooltip, Legend);
-const pieData = {
-  labels: ["Luna", "Tether", "Ethereum"],
-  datasets: [
-    {
-      label: "My First Dataset",
-      data: [250, 375, 375],
-      backgroundColor: [
-        "rgb(255, 99, 132)",
-        "rgb(54, 162, 235)",
-        "rgb(255, 205, 86)",
-      ],
-      hoverOffset: 4,
-    },
-  ],
-};
-const pieConfig = {
-  type: "pie",
-  data: pieData,
-};
 
-const labels = Utils.months({ count: 7 });
-const lineData = {
-  labels: labels,
-  datasets: [
-    {
-      label: "My First Dataset",
-      data: [65, 59, 80, 81, 56, 55, 40],
-      fill: false,
-      borderColor: "rgb(75, 192, 192)",
-      tension: 0.1,
-    },
-  ],
-};
-const lineConfig = {
-  type: "line",
-  data: lineData,
-};
-
-const filterArray = [
+const chartDuration = [
   {
     id: 1,
     text: "1D",
   },
   {
     id: 2,
-    text: "1D",
+    text: "1W",
   },
   {
     id: 3,
-    text: "1D",
+    text: "1M",
   },
   {
     id: 4,
-    text: "1D",
+    text: "6M",
   },
   {
     id: 5,
-    text: "1D",
+    text: "1Y",
   },
   {
     id: 6,
@@ -82,7 +57,7 @@ const filterArray = [
 ];
 
 const Home = () => {
-  const filterCurrency = filterArray.map(({ id, text }) => (
+  const currencyChart = chartDuration.map(({ id, text }) => (
     <li key={id}>
       <ButtonComp text={text} btnclass={"bg-gray-100 text-black"} />
     </li>
@@ -103,24 +78,26 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="col-span-8 row-span-2 col-start-2 row-start-2 flex items-center justify-between">
+        <div className="col-span-8 row-span-2 col-start-2 row-start-2 flex items-center justify-between flex-col">
           {/* here */}
-
-          <div>
-            <ul className="flex items-center gap-3">{filterCurrency}</ul>
-          </div>
-
-          <div className="space-x-4">
+          <div className="flex">
+            <ul className="flex items-center gap-3">{currencyChart}</ul>
             <DropDown value={"Cryptocurrency"} />
-
             <DropDown value={"Chart type"} />
           </div>
 
-          <Line options={lineConfig} data={lineData} />
+          {/* <div className="space-x-4">
+            <DropDown value={"Cryptocurrency"} />
+            <DropDown value={"Chart type"} />
+          </div> */}
+
+          <div className="">
+            <LineChart options={lineConfig} data={lineData} />
+          </div>
         </div>
         <div className="grid grid-cols-12 grid-rows-2 space-x-4">
           <div className="col-span-6 row-span-2  row-start-4 ">
-            <Pie options={pieConfig} data={pieData} />
+            <PieChart options={pieConfig} data={pieData} />
           </div>
           <div className="col-span-6 row-span-2  row-start-4 bg-red-300">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam

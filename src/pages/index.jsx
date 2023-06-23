@@ -18,13 +18,11 @@ import {
 import { CategoryScale } from 'chart.js';
 import { PieChart } from "../components/charts/PieChart";
 import { LineChart } from "../components/charts/LineChart";
-// import { barData, barConfig } from "../chartData/bar";
-import { lineData, lineConfig } from "../chartData/line";
-
-import { pieData, pieConfig } from "../chartData/pie";
-
+// import { barData } from "../chartData/bar";
+import { lineData } from "../chartData/line";
+import { pieData } from "../chartData/pie";
 // import pieData from "../chartData/pie";
-// import pieConfig from "../chartData/pie";
+
 
 Chart.register(...registerables);
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -92,12 +90,18 @@ const Home = () => {
           </div> */}
 
           <div className="">
-            <LineChart options={lineConfig} data={lineData} />
+            <LineChart data={lineData} />
           </div>
         </div>
         <div className="grid grid-cols-12 grid-rows-2 space-x-4">
           <div className="col-span-6 row-span-2  row-start-4 ">
-            <PieChart options={pieConfig} data={pieData} />
+            <div className="flex justify-between">
+              <CardTittle title={'Portfolio'} />
+              <p>Total Value: <b>$1000</b></p>
+            </div>
+            <div>
+              <PieChart data={pieData} />
+            </div>
           </div>
           <div className="col-span-6 row-span-2  row-start-4 bg-red-300">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam

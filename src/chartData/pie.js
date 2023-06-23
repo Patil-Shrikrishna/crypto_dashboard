@@ -13,7 +13,4 @@ export const pieData = {
         },
     ],
 };
-export const pieConfig = {
-    type: "pie",
-    data: pieData,
-};
+

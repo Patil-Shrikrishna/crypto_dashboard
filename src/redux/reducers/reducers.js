@@ -1,9 +1,9 @@
-const iniState = [];
+const iniState = { data: ['krishna'] };
 
 export const apiReducer = (state = iniState, { type, payload }) => {
   switch (type) {
     case "FETCH_API":
-      return [...state, payload];
+      return { ...state, data: payload };
 
     default:
       return state;

@@ -95,10 +95,10 @@ const Home = () => {
   const [showChart, setShowChart] = useState("line chart");
   const [showCoinData, setShowCoinData] = useState("Bitcoin");
   const dispatch = useDispatch();
-  const coinData = useSelector((state) => state.apiReducer[0]);
-  console.log(coinData);
+  const coinData = useSelector((state) => state.apiReducer);
+  console.log(coinData.data);
   useEffect(() => {
-    dispatch(fetchAPI(coinListData()));
+    coinListData().then(data => dispatch(fetchAPI(data)));
   }, []);
 
   const currencyChart = chartDuration.map(({ id, text }) => (
@@ -189,7 +189,7 @@ const Home = () => {
         <div className="col-span-2 row-span-5 col-start-10 row-start-1 row-end-5 p-6 rounded-md bg-white shadow-md">
           <CardTittle title={"Cryptocurrency by market cap"} />
           <ul className="space-y-2  overflow-y-scroll h-[calc(100vh-21rem)] myclass">
-            {coinData?.map(
+            {coinData.data.map(
               ({ id, name, market_cap, market_cap_change_percentage_24h }) => (
                 <MarketCapCards
                   key={id}

@@ -1,3 +1,4 @@
+
 export const Bitcoin = {
   labels: ["January", "February", "March", "April", "May", "June", "July"],
   datasets: [
@@ -33,4 +34,5 @@ export const Xrp = {
       // tension: 0.1 ,
     },
   ],
+
 };

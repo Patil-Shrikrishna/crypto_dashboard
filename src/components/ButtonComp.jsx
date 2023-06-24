@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-const ButtonComp = ({ text, btnclass }) => {
+const ButtonComp = ({ text, btnclass, value }) => {
   return (
     <button
       className={`${
@@ -7,6 +7,7 @@ const ButtonComp = ({ text, btnclass }) => {
       }  border  px-6 py-2  rounded-md font-medium`}
     >
       {text}
+      
     </button>
   );
 };

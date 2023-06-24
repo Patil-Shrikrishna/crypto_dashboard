@@ -267,6 +267,34 @@ const Home = () => {
               </div>
             </div>
           </div>
+
+          <div className="col-span-6 row-span-2  row-start-4">
+            <CardTittle title="Exchange Coin" />
+
+            <div className="flex items-start space-x-20">
+              <div className="flex">
+                <p className="text-orange-400 px-3">sell</p>
+                <DropDown value={"Bitcoin"} />
+              </div>
+              <div className="flex flex-col relative ">
+                <label htmlFor="search" className="text-gray-400 text-xs  absolute -top-5 left-0  "> Enter value
+                </label>
+                <Search placeholder={"Avl : 0.002BTC"} inputClass={"border w-40 rounded-md  "} />
+              </div>
+            </div>
+
+            <div className="flex space-x-20">
+              <div className="flex">
+                <p className="text-green-600 px-3 ">buy</p>
+                < DropDown value={"Etheruem"} />
+              </div>
+              <p className="text-green-600">23000Eth</p>
+            </div>
+            <div className="text-center">
+              <ButtonComp text="Exchange" />
+            </div>
+          </div>
+
         </div>
         <div></div>
         <div className="col-span-2 row-span-5 col-start-10">

@@ -166,21 +166,31 @@ const Home = () => {
               <PieChart data={pieData} />
             </div>
           </div>
-          <div className="col-span-6 row-span-2  row-start-4 bg-red-300">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam
-            adipisci sunt dolore at beatae quos labore voluptatum soluta commodi
-            ipsam voluptates architecto voluptas deserunt explicabo odit odio,
-            debitis mollitia quo animi earum repudiandae tempore, repellendus
-            iste? Rerum eveniet sequi eos? Recusandae tempora accusantium aut id
-            dignissimos repudiandae eveniet quas suscipit, accusamus
-            repellendus? Iure iste labore ut ullam rerum inventore, deleniti
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam
-            adipisci sunt dolore at beatae quos labore voluptatum soluta commodi
-            ipsam voluptates architecto voluptas deserunt explicabo odit odio,
-            debitis mollitia quo animi earum repudiandae tempore, repellendus
-            iste? Rerum eveniet sequi eos? Recusandae tempora accusantium aut id
-            dignissimos repudiandae eveniet quas suscipit, accusamus
-            repellendus? Iure iste labore ut ullam rerum inventore, deleniti
+          <div className="col-span-6 row-span-2  row-start-4">
+            <CardTittle title="Exchange Coin" />
+
+            <div className="flex items-start space-x-20">
+              <div className="flex">
+                <p className="text-orange-400 px-3">sell</p>
+                <DropDown value={"Bitcoin"} />
+              </div>
+              <div className="flex flex-col relative ">
+                <label htmlFor="search" className="text-gray-400 text-xs  absolute -top-5 left-0  "> Enter value
+                </label>
+                <Search placeholder={"Avl : 0.002BTC"} inputClass={"border w-40 rounded-md  "} />
+              </div>
+            </div>
+
+            <div className="flex space-x-20">
+              <div className="flex">
+                <p className="text-green-600 px-3 ">buy</p>
+                < DropDown value={"Etheruem"} />
+              </div>
+              <p className="text-green-600">23000Eth</p>
+            </div>
+            <div className="text-center">
+              <ButtonComp text="Exchange" />
+            </div>
           </div>
         </div>
       </div>

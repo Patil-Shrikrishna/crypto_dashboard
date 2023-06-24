@@ -2,7 +2,7 @@ import CardTittle from "../components/CardTittle";
 import DropDown from "../components/DropDown";
 import MarketCapCards from "../components/MarketCapCards";
 import Search from "../components/Search";
-import { IoMdArrowDropup } from "react-icons/io";
+import { IoMdArrowDropup, IoMdArrowDropdown } from "react-icons/io";
 import { BsSearch } from "react-icons/bs";
 
 import { PiCalendarLight } from "react-icons/pi";
@@ -109,12 +109,37 @@ const allCharts = [
     type: <PieChart data={pieData} />,
   },
 ];
+
+const currencyType = [
+  {
+    id: 1,
+    type: "usd",
+  },
+  {
+    id: 2,
+    type: "eur",
+  },
+  {
+    id: 3,
+    type: "jpy",
+  },
+];
+
 const Home = () => {
   const [showChart, setShowChart] = useState("line chart");
+
   const [showCoinData, setShowCoinData] = useState("Bitcoin");
+
+  const [chooseCurrency, setChooseCurrency] = useState("usd");
+
+  console.log("currency", chooseCurrency);
+
   const dispatch = useDispatch();
+
   const coinData = useSelector((state) => state.apiReducer);
-  console.log(coinData.data);
+
+  // console.log(coinData.data);
+
   useEffect(() => {
     coinListData().then((data) => dispatch(fetchAPI(data)));
   }, []);
@@ -129,6 +154,9 @@ const Home = () => {
       <ButtonComp text={text} btnclass={"bg-gray-100 text-black"} />
     </li>
   ));
+
+  // const typeOfCurrency = currencyType.map((currency) => currency);
+
   ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -140,7 +168,7 @@ const Home = () => {
 
   const showcharts = allCharts.map(({ type }, index) => {
     if (showChart == charts[index].type) return type;
-    if (showCoinData == crypto[index].type) return;
+    // if (showCoinData == crypto[index].type) return;
   });
 
   return (
@@ -148,7 +176,11 @@ const Home = () => {
       <div className="col-span-8 row-span-5 space-y-10 col-start-2">
         <div className="col-span-8 col-start-2 row-start-1">
           <div className="flex items-center gap-4 w-full">
-            <DropDown value={"USD"} />
+            <DropDown
+              value={"usd"}
+              chartType={currencyType}
+              set={setChooseCurrency}
+            />
             <div className=" border w-full rounded-md flex items-center gap-2 px-2 bg-white">
               <span className="border-r">
                 <BsSearch className=" mx-2" />
@@ -178,7 +210,6 @@ const Home = () => {
           </div>
 
           <div className="max-w-4xl mx-auto">
-            {/* //////// */}
             {showcharts}
             {/* <LineChart data={lineData} /> */}
 
@@ -214,7 +245,6 @@ const Home = () => {
                     htmlFor="search"
                     className="text-gray-400 text-xs  absolute -top-5 left-0  "
                   >
-                    {" "}
                     Enter value
                   </label>
                   <Search
@@ -233,7 +263,6 @@ const Home = () => {
               </div>
 
               <div className="text-center">
-                {" "}
                 <ButtonComp text="Exchange" />
               </div>
             </div>
@@ -253,11 +282,21 @@ const Home = () => {
                 }) => (
                   <MarketCapCards
                     key={id}
-                    icon={<IoMdArrowDropup />}
+                    icon={
+                      market_cap_change_percentage_24h < 0 ? (
+                        <IoMdArrowDropdown />
+                      ) : (
+                        <IoMdArrowDropup />
+                      )
+                    }
                     marketCap={market_cap}
                     coin={name}
                     changePercent={market_cap_change_percentage_24h}
-                    marketClass={"text-green-700"}
+                    marketClass={
+                      market_cap_change_percentage_24h < 0
+                        ? "text-red-700"
+                        : "text-green-700"
+                    }
                   />
                 )
               )}

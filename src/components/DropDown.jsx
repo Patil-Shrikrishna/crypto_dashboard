@@ -9,7 +9,7 @@ const DropDown = ({ value, chartType, set }) => {
 
   return (
     <select
-      className=" rounded-md px-5 py-2 max-w-max min-w-max  text-sm border shadow-xs font-medium "
+      className=" rounded-md px-5 py-2 max-w-max min-w-max  text-sm border shadow-xs font-medium capitalize"
       name="charttype"
       id="charttype"
       onChange={(e) => set(e.target.value)}

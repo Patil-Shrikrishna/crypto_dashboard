@@ -1,0 +1,38 @@
+{
+  "currency": [
+    {
+      "id": 1,
+      "currency": "inr"
+    },
+    {
+      "id": 2,
+      "currency": "usd"
+    },
+    {
+      "id": 3,
+      "currency": "aud"
+    },
+    {
+      "id": 4,
+      "currency": "eur"
+    },
+    {
+      "id": 5,
+      "currency": "jpy"
+    }
+  ],
+  "charts": [
+    {
+      "id": 1,
+      "chart": "bar chart vertical"
+    },
+    {
+      "id": 2,
+      "chart": "bar chart horizontal"
+    },
+    {
+      "id": 3,
+      "chart": "line"
+    }
+  ]
+}

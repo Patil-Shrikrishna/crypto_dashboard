@@ -4,3 +4,10 @@ export const fetchAPI = (res) => {
     payload: res,
   };
 };
+
+export const coinIDS = (data) => {
+  return {
+    type: "COIN_IDS",
+    payload: data,
+  };
+};

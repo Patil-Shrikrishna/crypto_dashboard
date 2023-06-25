@@ -53,26 +53,11 @@ const Home = () => {
   const dispatch = useDispatch();
   const coinData = useSelector((state) => state.apiReducer);
   console.log("coindata", coinData);
-  // coinMarket();
-  // coinMarket().then(data => dispatch(marketAction(data)));
-  // useEffect(() => {
-  //   coinMarket().then((data) => dispatch(marketAction(data)));
-  //   // let a = coinMarket().then((data) => data);
-  //   // console.log("coinMarket()", a);
-  // }, []);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await coinMarket();
-        dispatch(marketAction(data));
-      } catch (error) {
-        // Handle any error that occurred during the fetch or dispatch
-        console.error("Error fetching coin market data:", error);
-      }
-    };
-    fetchData();
-  }, [dispatch]);
+    coinMarket().then((data) => dispatch(marketAction(data)));
+  }, []);
+
 
   const currencyChart = chartDuration.map(({ id, text }) => (
     <li key={id}>
@@ -135,7 +120,7 @@ const Home = () => {
 
           <div className="max-w-4xl mx-auto">
             {/* {showcharts} */}
-            <LineChart data={Bitcoin} />
+            {/* <LineChart data={Bitcoin} /> */}
           </div>
         </div>
         <div className="grid grid-cols-12 grid-rows-2 space-x-4">

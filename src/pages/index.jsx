@@ -13,11 +13,13 @@ import { LineChart } from "../components/charts/LineChart";
 // import { BarChart } from "../components/charts/BarChart";
 
 import { Bitcoin } from "../chartData/line";
+import babyBitcoinChartData from '../data/babyBitcoinChartData.json'
+import apiCoinList from '../data/apiCoinList.json'
 import db from "../data/db.json";
 import { useEffect } from "react";
 import { pieData } from "../chartData/pie";
 import { useDispatch, useSelector } from "react-redux";
-import { marketAction } from "../redux/actions/actions";
+import { listAction, marketAction } from "../redux/actions/actions";
 import { coinMarket } from "../api/api";
 Chart.register(...registerables);
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -53,10 +55,14 @@ const Home = () => {
   const dispatch = useDispatch();
   const coinData = useSelector((state) => state.apiReducer);
   console.log("coindata", coinData);
-
+  // let abc = apiCoinList?.map(data => data)
+  // console.log('listAction.map(data=>data)', apiCoinList);
   useEffect(() => {
-    coinMarket().then((data) => dispatch(marketAction(data)));
-  }, []);
+    // coinMarket().then((data) => dispatch(marketAction(data)));
+    dispatch(listAction(apiCoinList))
+    dispatch(marketAction(babyBitcoinChartData))
+    // console.log('babyBitcoinChartData',  babyBitcoinChartData.prices.map(item => item));
+  }, [dispatch]);
 
 
   const currencyChart = chartDuration.map(({ id, text }) => (
@@ -99,7 +105,7 @@ const Home = () => {
               {/* {CurrencyData} */}
               {
                 <DropDown
-                  list={coinData.coin_Market.map(({ id, name }) => (
+                  list={coinData.coin_List.map(({ id, name }) => (
                     <option key={id} value={id}>
                       {name}
                     </option>
@@ -176,7 +182,7 @@ const Home = () => {
         <div className="col-span-2 row-span-5 col-start-10 row-start-1 row-end-5 p-6 rounded-md bg-white shadow-md">
           <CardTittle title={"Cryptocurrency by market cap"} />
           <ul className="space-y-2  overflow-y-scroll h-[calc(100vh-21rem)] myclass">
-            {coinData.coin_Market.map(
+            {coinData.coin_List.map(
               ({ id, name, market_cap, market_cap_change_percentage_24h }) => (
                 <MarketCapCards
                   key={id}

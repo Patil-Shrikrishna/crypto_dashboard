@@ -16,10 +16,9 @@ import { Bitcoin } from "../chartData/line";
 import db from "../data/db.json";
 import { useEffect } from "react";
 import { pieData } from "../chartData/pie";
-import { CoinList } from "../api/api";
 import { useDispatch, useSelector } from "react-redux";
-import { coinIDS, fetchAPI } from "../redux/actions/actions";
-
+import { marketAction } from "../redux/actions/actions";
+import { coinMarket } from "../api/api";
 Chart.register(...registerables);
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -53,15 +52,27 @@ const chartDuration = [
 const Home = () => {
   const dispatch = useDispatch();
   const coinData = useSelector((state) => state.apiReducer);
-  console.log(coinData.data);
+  console.log("coindata", coinData);
+  // coinMarket();
+  // coinMarket().then(data => dispatch(marketAction(data)));
+  // useEffect(() => {
+  //   coinMarket().then((data) => dispatch(marketAction(data)));
+  //   // let a = coinMarket().then((data) => data);
+  //   // console.log("coinMarket()", a);
+  // }, []);
+
   useEffect(() => {
-    const abc = CoinList();
-    console.log(abc);
-
-    CoinList().then((data) => dispatch(coinIDS(data)));
-
-    // CoinListData().then((data) => dispatch(fetchAPI(data)));
-  }, []);
+    const fetchData = async () => {
+      try {
+        const data = await coinMarket();
+        dispatch(marketAction(data));
+      } catch (error) {
+        // Handle any error that occurred during the fetch or dispatch
+        console.error("Error fetching coin market data:", error);
+      }
+    };
+    fetchData();
+  }, [dispatch]);
 
   const currencyChart = chartDuration.map(({ id, text }) => (
     <li key={id}>
@@ -103,7 +114,7 @@ const Home = () => {
               {/* {CurrencyData} */}
               {
                 <DropDown
-                  list={coinData.data.map(({ id, name }) => (
+                  list={coinData.coin_Market.map(({ id, name }) => (
                     <option key={id} value={id}>
                       {name}
                     </option>
@@ -180,7 +191,7 @@ const Home = () => {
         <div className="col-span-2 row-span-5 col-start-10 row-start-1 row-end-5 p-6 rounded-md bg-white shadow-md">
           <CardTittle title={"Cryptocurrency by market cap"} />
           <ul className="space-y-2  overflow-y-scroll h-[calc(100vh-21rem)] myclass">
-            {coinData.data.map(
+            {coinData.coin_Market.map(
               ({ id, name, market_cap, market_cap_change_percentage_24h }) => (
                 <MarketCapCards
                   key={id}

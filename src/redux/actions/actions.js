@@ -1,13 +1,13 @@
-export const fetchAPI = (res) => {
+export const marketAction = (data) => {
   return {
-    type: "FETCH_API",
-    payload: res,
+    type: "FETCH_MARKET",
+    payload: data,
   };
 };
 
-export const coinIDS = (data) => {
+export const listAction = (data) => {
   return {
-    type: "COIN_IDS",
+    type: "COIN_LIST",
     payload: data,
   };
 };
